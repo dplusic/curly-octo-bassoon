@@ -1,14 +1,41 @@
-[![fritz2](https://www.fritz2.dev/img/fritz2_header.png)](https://www.fritz2.dev/)
+# curly-octo-bassoon
 
-# A getting-started-template for fritz2-apps.
+DSL of Web Tools for Developers
 
-template project to quickly set up a fritz2-app
+## What is it?
 
-Please have a look at [fritz2's documentation](https://fritz2.dev/docs) 
-or the [examples](https://examples.fritz2.dev/) to learn, how to use it.
+Render this code
 
-If you want to style your fritz2-app with [tailwind.css](https://tailwindcss.com/) 
-we provide an extra [tailwind-template](https://github.com/jwstegemann/fritz2-tailwind-template) for it.
-
-If you have any problems with this template, 
-please open an issue at [fritz2](https://github.com/jwstegemann/fritz2/issues).
+```kotlin
+page {
+    val emailInput = input(
+        title = "Eamil",
+    )
+    val typeSelect = select(
+        title = "Type",
+        values = mapOf(
+            1 to "Monthly",
+            2 to "Infinite",
+        ),
+    )
+    val dataStore = store()
+    button(
+        title = "Search",
+        action = LoadData(
+            source = Source(
+                url = "https://api.server/example1/page1",
+                payload = mapOf(
+                    "email" to ref(emailInput),
+                    "voucher" to ref(typeSelect),
+                )
+            ),
+            store = dataStore,
+        ),
+    )
+    table(
+        store = dataStore,
+    )
+}
+```
+to
+![](./images/img.png)
